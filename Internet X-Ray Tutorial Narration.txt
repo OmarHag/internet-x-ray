@@ -1,0 +1,19 @@
+Welcome to Internet X-Ray.
+
+Internet X-Ray is a desktop application that helps you see what your Mac is talking to over the network. It does not read messages or packet contents. Instead, it observes connection metadata: which application owns a connection, where that connection goes, which port and protocol it uses, and whether it is currently open.
+
+Let’s start with the top bar. Monitoring Active means the local collector is running. Device is your computer’s hostname. Interface, such as E N zero, is the network adapter currently providing your local address. Local IP is the address your Mac uses inside your home or office network. Connections is the number of sockets found in the current scan.
+
+The Network Activity chart is part of the visual shell. In Milestone One it is clearly marked demo because real download and upload measurement has not been implemented yet. The table underneath is different: it contains real information collected from the Mac.
+
+Each connection row answers six questions. Process tells you which program owns the socket. PID is the operating system’s identifier for that running process. Remote address is the other endpoint. Port describes the service being contacted. Port four four three usually means encrypted H T T P S traffic. Protocol is normally T C P or U D P. State tells us whether a connection is established, listening, or in another operating-system state.
+
+When you select a row, the inspector on the right separates the local endpoint from the remote endpoint. Copy IP lets you copy the destination address. The process summary below counts which applications currently own the most sockets. Several rows going to the same address are not automatically duplicates. Browsers and modern desktop applications commonly maintain multiple independent connections.
+
+Under the interface, the project has three layers. First, Rust runs a fixed, read-only macOS socket inventory command and parses the result into strongly typed connection records. Second, Tauri provides a secure local bridge between Rust and the interface. Third, React and TypeScript poll that bridge about every two seconds, then filter, sort, and display the records. No collected network data is uploaded to a server.
+
+Milestone One proves the core product loop: real macOS data can travel from a systems-level Rust collector into a native, understandable desktop interface.
+
+The next task should be a short accuracy pass. Internet X-Ray needs to clearly distinguish internet connections, local loopback communication, and listening sockets, while improving stable row identity and state labels. After that, Milestone Two can replace the demo chart with real per-process bandwidth and download and upload rates.
+
+That is Internet X-Ray today: a local, private window into which applications are communicating, built as the foundation for a much deeper network observability tool.
