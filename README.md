@@ -1,5 +1,7 @@
 # Internet X-Ray
 
+> **Status: work in progress.** The macOS connection inspector is functional, with additional monitoring and platform support still planned.
+
 **See what your computer is talking to.**
 
 Internet X-Ray is a local-first macOS desktop application for inspecting active network connections. Milestone 1 identifies the processes using the network, their local and remote endpoints, protocols, ports, and socket states in a dense, real-time technical interface.
